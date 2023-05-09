@@ -1,18 +1,18 @@
-import React from "react";
-import { type Todo } from "../models/model";
+import React from 'react'
+import { type Todo } from '../models/model'
 
 interface Props {
-  todos: Todo[];
-  handleSetComplete: (id: number) => void;
-  handleDelete: (id: number) => void;
-  handleUpdate: (todo: Todo) => void;
+  todos: Todo[]
+  handleSetComplete: (id: number) => void
+  handleDelete: (id: number) => void
+  handleUpdate: (todo: Todo) => void
 }
 
 export const ListTodos: React.FC<Props> = ({
   todos,
   handleSetComplete,
   handleDelete,
-  handleUpdate,
+  handleUpdate
 }) => {
   return (
     <div>
@@ -45,10 +45,11 @@ export const ListTodos: React.FC<Props> = ({
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
                   <div className="flex items-center">
-                    {todo.status ? (
+                    {todo.status
+                      ? (
                       <div
                         onClick={() => {
-                          handleSetComplete(todo.id);
+                          handleSetComplete(todo.id)
                         }}
                         className="bg-green-700  p-1 rounded-full cursor-pointer"
                       >
@@ -58,37 +59,38 @@ export const ListTodos: React.FC<Props> = ({
                           alt="Check Icon"
                         />
                       </div>
-                    ) : (
+                        )
+                      : (
                       <span
                         onClick={() => {
-                          handleSetComplete(todo.id);
+                          handleSetComplete(todo.id)
                         }}
                         className={
-                          "border border-gray-500 border-solid p-3 rounded-full cursor-pointer"
+                          'border border-gray-500 border-solid p-3 rounded-full cursor-pointer'
                         }
                       ></span>
-                    )}
+                        )}
                   </div>
                 </th>
                 <td className="px-6 py-4">
-                  <p className={todo.status ? "line-through" : ""}>
+                  <p className={todo.status ? 'line-through' : ''}>
                     {todo.title}
                   </p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className={todo.status ? "line-through" : ""}>
+                  <p className={todo.status ? 'line-through' : ''}>
                     {todo.category}
                   </p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className={todo.status ? "line-through" : ""}>
+                  <p className={todo.status ? 'line-through' : ''}>
                     {todo.description}
                   </p>
                 </td>
                 <td className="px-6 py-4 flex gap-3">
                   <button
                     onClick={() => {
-                      handleUpdate(todo);
+                      handleUpdate(todo)
                     }}
                   >
                     <img
@@ -99,7 +101,7 @@ export const ListTodos: React.FC<Props> = ({
                   </button>
                   <button
                     onClick={() => {
-                      handleDelete(todo.id);
+                      handleDelete(todo.id)
                     }}
                   >
                     <img
@@ -115,5 +117,5 @@ export const ListTodos: React.FC<Props> = ({
         </table>
       </div>
     </div>
-  );
-};
+  )
+}
