@@ -1,12 +1,19 @@
-import React from 'react'
-import { type Todo } from '../models/model'
+import React from "react";
+import { type Todo } from "../models/model";
 
 interface Props {
-  todos: Todo[]
-  handleSetComplete: (id: number) => void
+  todos: Todo[];
+  handleSetComplete: (id: number) => void;
+  handleDelete: (id: number) => void;
+  handleUpdate: (todo: Todo) => void;
 }
 
-export const ListTodos: React.FC<Props> = ({ todos, handleSetComplete }) => {
+export const ListTodos: React.FC<Props> = ({
+  todos,
+  handleSetComplete,
+  handleDelete,
+  handleUpdate,
+}) => {
   return (
     <div>
       <div className="relative overflow-x-auto">
@@ -38,10 +45,11 @@ export const ListTodos: React.FC<Props> = ({ todos, handleSetComplete }) => {
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
                   <div className="flex items-center">
-                    {todo.status
-                      ? (
+                    {todo.status ? (
                       <div
-                        onClick={() => { handleSetComplete(todo.id) }}
+                        onClick={() => {
+                          handleSetComplete(todo.id);
+                        }}
                         className="bg-green-700  p-1 rounded-full cursor-pointer"
                       >
                         <img
@@ -50,38 +58,55 @@ export const ListTodos: React.FC<Props> = ({ todos, handleSetComplete }) => {
                           alt="Check Icon"
                         />
                       </div>
-                        )
-                      : (
+                    ) : (
                       <span
-                        onClick={() => { handleSetComplete(todo.id) }}
+                        onClick={() => {
+                          handleSetComplete(todo.id);
+                        }}
                         className={
-                          'border border-gray-500 border-solid p-3 rounded-full cursor-pointer'
+                          "border border-gray-500 border-solid p-3 rounded-full cursor-pointer"
                         }
                       ></span>
-                        )}
+                    )}
                   </div>
                 </th>
                 <td className="px-6 py-4">
-                  <p className={todo.status ? 'line-through' : ''}>
+                  <p className={todo.status ? "line-through" : ""}>
                     {todo.title}
                   </p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className={todo.status ? 'line-through' : ''}>
+                  <p className={todo.status ? "line-through" : ""}>
                     {todo.category}
                   </p>
                 </td>
                 <td className="px-6 py-4">
-                  <p className={todo.status ? 'line-through' : ''}>
-                    {todo.title}
+                  <p className={todo.status ? "line-through" : ""}>
+                    {todo.description}
                   </p>
                 </td>
                 <td className="px-6 py-4 flex gap-3">
-                  <button>
-                    <i className="fa-regular fa-pen-to-square"></i>
+                  <button
+                    onClick={() => {
+                      handleUpdate(todo);
+                    }}
+                  >
+                    <img
+                      className="h-4 w-4 hover:scale-110"
+                      src="/edit-icon.svg"
+                      alt="Edit Icon"
+                    />
                   </button>
-                  <button>
-                    <i className="fa-sharp fa-regular fa-trash"></i>
+                  <button
+                    onClick={() => {
+                      handleDelete(todo.id);
+                    }}
+                  >
+                    <img
+                      className="h-4 w-4 hover:scale-110"
+                      src="/delete-icon.svg"
+                      alt="Delete Icon"
+                    />
                   </button>
                 </td>
               </tr>
@@ -89,13 +114,6 @@ export const ListTodos: React.FC<Props> = ({ todos, handleSetComplete }) => {
           </tbody>
         </table>
       </div>
-
-      <div className="mt-3 flex gap-2">
-        ToDos:
-        <p className="w-5 h-5 rounded-full bg-red-400 flex justify-center items-center">
-          {todos.length}
-        </p>
-      </div>
     </div>
-  )
-}
+  );
+};
