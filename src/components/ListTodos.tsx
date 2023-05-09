@@ -21,7 +21,7 @@ export const ListTodos: React.FC<Props> = ({
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Status
+                Estado
               </th>
               <th scope="col" className="px-6 py-3">
                 Titulo
@@ -92,9 +92,10 @@ export const ListTodos: React.FC<Props> = ({
                     onClick={() => {
                       handleUpdate(todo)
                     }}
+                    className='border rounded-md p-2 bg-yellow-200 hover:scale-110'
                   >
                     <img
-                      className="h-4 w-4 hover:scale-110"
+                      className="h-5 w-5"
                       src="/edit-icon.svg"
                       alt="Edit Icon"
                     />
@@ -103,9 +104,10 @@ export const ListTodos: React.FC<Props> = ({
                     onClick={() => {
                       handleDelete(todo.id)
                     }}
+                    className='border rounded-md p-2 bg-red-200 hover:scale-110'
                   >
                     <img
-                      className="h-4 w-4 hover:scale-110"
+                      className="h-5 w-5"
                       src="/delete-icon.svg"
                       alt="Delete Icon"
                     />
