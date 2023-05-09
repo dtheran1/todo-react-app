@@ -51,6 +51,18 @@ function App () {
 
     setTodos(todosList)
   }
+
+  const handleSetComplete = (id: number) => {
+    const updatedList = todos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, status: !todo.status }
+      }
+      return todo
+    })
+
+    setTodos(updatedList)
+  }
+
   return (
     <>
       <div className="w-full min-h-screen h-full py-20 px-5 flex justify-center items-center">
@@ -59,7 +71,7 @@ function App () {
           <CreateTodo handleSubmit={handleSubmit} />
 
           <div className="p-3">
-            <ListTodos todos={todos} />
+            <ListTodos todos={todos} handleSetComplete={handleSetComplete} />
           </div>
         </div>
       </div>

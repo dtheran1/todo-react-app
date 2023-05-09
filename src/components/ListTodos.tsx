@@ -3,9 +3,10 @@ import { type Todo } from '../models/model'
 
 interface Props {
   todos: Todo[]
+  handleSetComplete: (id: number) => void
 }
 
-export const ListTodos: React.FC<Props> = ({ todos }) => {
+export const ListTodos: React.FC<Props> = ({ todos, handleSetComplete }) => {
   return (
     <div>
       <div className="relative overflow-x-auto">
@@ -40,7 +41,7 @@ export const ListTodos: React.FC<Props> = ({ todos }) => {
                     {todo.status
                       ? (
                       <div
-                        onClick={() => handleSetComplete(id)}
+                        onClick={() => { handleSetComplete(todo.id) }}
                         className="bg-green-700  p-1 rounded-full cursor-pointer"
                       >
                         <img
@@ -52,7 +53,7 @@ export const ListTodos: React.FC<Props> = ({ todos }) => {
                         )
                       : (
                       <span
-                        onClick={() => handleSetComplete(id)}
+                        onClick={() => { handleSetComplete(todo.id) }}
                         className={
                           'border border-gray-500 border-solid p-3 rounded-full cursor-pointer'
                         }
