@@ -83,6 +83,7 @@ function App () {
     })
 
     setTodos(updatedList)
+    localStorage.setItem('todos', JSON.stringify(updatedList))
   }
   const updateTodo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
