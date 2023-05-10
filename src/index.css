@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-  background: -webkit-linear-gradient(90deg, rgb(18, 58, 90) 10%, rgb(74, 209, 250) 90%);
-
+  background-image: url('../public/back2.jpg');
+  background-size: cover;
 }

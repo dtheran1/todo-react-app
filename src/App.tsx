@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { CreateTodo } from './components/CreateTodo'
 import Header from './components/Header'
@@ -18,7 +18,7 @@ function App () {
   })
   const [isUpdating, setIsUpdating] = useState(false)
   const [todos, setTodos] = useState(mockTodos)
-  const [filter, setFilter] = useState<'all' | 'completed' | 'active' >('all')
+  const [filter, setFilter] = useState<'all' | 'completed' | 'active'>('all')
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>(todos)
   const [search, setSearch] = useState('')
 
@@ -60,7 +60,7 @@ function App () {
     form.reset()
   }
   const handleSetComplete = (id: number) => {
-    const updatedList = todos.map((todo) => {
+    const updatedList = todos.map(todo => {
       if (todo.id === id) {
         return { ...todo, status: !todo.status }
       }
@@ -78,7 +78,7 @@ function App () {
     const category = formData.get('category') as string
     const description = formData.get('description') as string
     if (!title.trim() || !category.trim() || !description.trim()) return
-    const todoFiltered = todos.findIndex((todo) => todo.id === auxTodo.id)
+    const todoFiltered = todos.findIndex(todo => todo.id === auxTodo.id)
     const updatedTodo = {
       ...auxTodo,
       title,
@@ -93,7 +93,7 @@ function App () {
     setIsUpdating(false)
   }
   const handleDelete = (id: number) => {
-    const updatedList = todos.filter((todo) => todo.id !== id)
+    const updatedList = todos.filter(todo => todo.id !== id)
     setTodos(updatedList)
     localStorage.setItem('todos', JSON.stringify(updatedList))
   }
@@ -124,44 +124,65 @@ function App () {
       const completedTodos = todos.filter(todo => todo.status)
       setFilteredTodos(completedTodos)
     }
-  }, [filter, todos])
-
-  const searchTodo = useMemo(() => {
-    return search.trim().length > 0
-      ? filteredTodos.filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()) || todo.category.toLowerCase().includes(search.toLowerCase()) || todo.description.toLowerCase().includes(search.toLowerCase()))
-      : filteredTodos
-  }, [search])
+    if (search.trim().length > 0) {
+      const searchTodo = filteredTodos.filter(
+        todo =>
+          todo.title.toLowerCase().includes(search.toLowerCase()) ||
+          todo.category.toLowerCase().includes(search.toLowerCase()) ||
+          todo.description.toLowerCase().includes(search.toLowerCase())
+      )
+      setFilteredTodos(searchTodo)
+    }
+  }, [search, filter, todos])
 
   return (
     <>
-      <div className="w-full font-inter min-h-screen h-full py-20 px-5 flex justify-center items-center">
-        <div className="w-3/4 rounded-lg shadow-2xl border-b">
+      <div className='w-full font-inter min-h-screen h-full py-20 px-5 flex justify-center items-center'>
+        <div className='w-3/4 rounded-lg shadow-2xl border-b bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg'>
           <Header />
           <CreateTodo handleSubmit={handleSubmitCreate} />
 
-          <div className="flex flex-col md:flex-row items-center text-lg justify-between mt-7 p-4 bg-gray-700/50 border-b rounded-lg mx-6">
-            <p className="text-gray-400">
-              {filteredTodos.length} items left
-            </p>
+          <div className='flex flex-col md:flex-row items-center text-lg justify-between mt-7 p-4 bg-gray-700/50 border-b rounded-lg mx-6'>
+            <p className='text-gray-400'>{filteredTodos.length} items left</p>
 
             <input
               value={search}
               type='text'
               placeholder='Search a ToDo...'
-              onChange={(e) => { setSearch(e.target.value) }}
-              className='h-10 rounded-md px-3 focus:outline-none bg-transparent focus:bg-sky-500 focus:w-80 focus:outline-teal-900 placeholder:text-white placeholder:text-center text-white transition duration-150 ease-out'
+              onChange={e => {
+                setSearch(e.target.value)
+              }}
+              className='h-10 rounded-md px-3 focus:outline-none bg-transparent focus:bg-gray-500 focus:w-80 focus:outline-teal-900 placeholder:text-white placeholder:text-center text-white transition duration-150 ease-out'
             />
 
-            <div className="flex items-center space-x-2">
-              <FilterButton action={() => { showAllTodos() }} active={filter} filter='All'/>
-              <FilterButton action={() => { showActiveTodos() }} active={filter} filter='Active' />
-              <FilterButton action={() => { showCompletedTodos() }} active={filter} filter='Completed' />
+            <div className='flex items-center space-x-2'>
+              <FilterButton
+                action={() => {
+                  showAllTodos()
+                }}
+                active={filter}
+                filter='All'
+              />
+              <FilterButton
+                action={() => {
+                  showActiveTodos()
+                }}
+                active={filter}
+                filter='Active'
+              />
+              <FilterButton
+                action={() => {
+                  showCompletedTodos()
+                }}
+                active={filter}
+                filter='Completed'
+              />
             </div>
           </div>
 
-          <div className="p-6">
+          <div className='p-6'>
             <ListTodos
-              todos={search.trim().length ? searchTodo : filteredTodos}
+              todos={filteredTodos}
               handleSetComplete={handleSetComplete}
               handleDelete={handleDelete}
               handleUpdate={openModal}

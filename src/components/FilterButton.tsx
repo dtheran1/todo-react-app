@@ -6,9 +6,15 @@ interface Props {
 }
 export const FilterButton: React.FC<Props> = ({ action, active, filter }) => {
   return (
-      <button onClick={action} className={' hover:text-white cursor-pointer  transition-all duration-300 ease-in-out ' + (active.toLowerCase().includes(filter.toLowerCase()) ? 'text-blue-400' : 'text-gray-400')}
-      >
-        {filter}
-      </button>
+    <button
+      onClick={action}
+      className={
+        ' hover:text-white cursor-pointer  transition-all duration-300 ease-in-out ' +
+        (active.toLowerCase().includes(filter.toLowerCase())
+          ? 'text-sky-500'
+          : 'text-gray-400')
+      }>
+      {filter}
+    </button>
   )
 }
