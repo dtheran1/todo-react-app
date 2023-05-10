@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 body {
-  background: #555;
+  background: -webkit-linear-gradient(90deg, rgb(18, 58, 90) 10%, rgb(74, 209, 250) 90%);
+
 }

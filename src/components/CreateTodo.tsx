@@ -9,27 +9,27 @@ export const CreateTodo: React.FC<Props> = ({ handleSubmit }) => {
         <form onSubmit={handleSubmit}>
           <div className="w-full flex flex-col md:flex-row gap-3">
             <div>
-              <div>Título</div>
+              <div className='font-bold'>Title</div>
               <input
                 type="text"
                 name="title"
-                placeholder="Título"
+                placeholder="Title"
                 required
                 className="h-10 rounded-md focus:outline-none pl-3"
               />
             </div>
             <div>
-              <div>Categoría</div>
+              <div className='font-bold'>Category</div>
               <input
                 type="text"
                 name="category"
-                placeholder="Categoría"
+                placeholder="Category"
                 required
                 className="h-10 rounded-md focus:outline-none pl-3"
               />
             </div>
             <div>
-              <div>Descripción</div>
+              <div className='font-bold'>Description</div>
               <input
                 type="text"
                 name="description"
@@ -42,9 +42,9 @@ export const CreateTodo: React.FC<Props> = ({ handleSubmit }) => {
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="px-3 mt-4 w-2/4 bg-blue-500 text-white h-10 hover:bg-blue-700 rounded-md"
+              className="p-3 text-center mt-4 w-2/4 bg-cyan-600 hover:bg-cyan-900 text-white font-bold text-xl rounded-md hover:shadow-xl transition duration-150 ease-out"
             >
-              Crear
+              Create a new ToDo!
             </button>
           </div>
         </form>

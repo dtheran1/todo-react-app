@@ -20,15 +20,15 @@ export const UpdateTodo: React.FC<Props> = ({
         <div className="relative w-5/6 my-6 mx-auto max-w-3xl">
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-              <h3 className="text-3xl font-semibold">Actualizar ToDo</h3>
-              <button className="p-1 ml-auto border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
-                <span className=" text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                  ×
-                </span>
+              <h3 className="text-3xl font-semibold">Editar ToDo</h3>
+              <button className="p-1 ml-auto h-10 w-10 float-right text-3xl font-semibold text-black hover:text-red-700 hover:scale-105" onClick={closeModal}>
+                <svg fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
               </button>
             </div>
             <div className="relative p-6 flex-auto ">
-              <form className="" onSubmit={updateTodo}>
+              <form className="flex flex-col gap-y-3 w-full" onSubmit={updateTodo}>
                 <div className="flex items-center gap-5 justify-center">
                   <div className="">
                     <span className="font-bold">Titulo</span>
@@ -79,7 +79,7 @@ export const UpdateTodo: React.FC<Props> = ({
                 </div>
                 <div className="flex items-center justify-center mt-6 p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="text-red-500 background-transparent p-3 border border-transparent rounded-md font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 hover:border-red-500"
                     type="button"
                     onClick={closeModal}
                   >

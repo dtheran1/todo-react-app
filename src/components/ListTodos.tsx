@@ -17,29 +17,29 @@ export const ListTodos: React.FC<Props> = ({
   return (
     <div>
       <div className="relative overflow-x-auto">
-        <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+        <table className="w-full text-lg text-left text-gray-900 rounded-md">
+          <thead className="text-black uppercase bg-gradient-to-b from-cyan-300 to-cyan-900">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Estado
+                Done
               </th>
               <th scope="col" className="px-6 py-3">
-                Titulo
+                Title
               </th>
               <th scope="col" className="px-6 py-3">
-                Categoria
+                Category
               </th>
               <th scope="col" className="px-6 py-3">
-                Descripción
+                Description
               </th>
               <th scope="col" className="px-6 py-3">
-                Acciones
+                Actions
               </th>
             </tr>
           </thead>
           <tbody>
             {todos.map((todo) => (
-              <tr key={todo.id} className="bg-white border-b">
+              <tr key={todo.id} className="bg-cyan-900/50 border-b text-white font-semibold">
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "

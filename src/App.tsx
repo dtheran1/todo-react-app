@@ -24,9 +24,11 @@ function App () {
 
   const getTodos = () => {
     const getStoreTodos = JSON.parse(localStorage.getItem('todos'))
-    getStoreTodos !== null || getStoreTodos !== ''
-      ? setTodos(getStoreTodos)
-      : setTodos(filteredTodos)
+    if (getStoreTodos ?? false) {
+      setTodos(getStoreTodos)
+    } else {
+      setTodos(mockTodos)
+    }
   }
 
   useEffect(() => {
@@ -125,33 +127,29 @@ function App () {
   }, [filter, todos])
 
   const searchTodo = useMemo(() => {
-    if (typeof search === 'string' && search.length > 0) {
-      return filteredTodos.filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()) || todo.category.toLowerCase().includes(search.toLowerCase()) || todo.description.toLowerCase().includes(search.toLowerCase()))
-    }
-    return filteredTodos
-
-    // return typeof search === 'string' && search.length > 0
-    //   ? filteredTodos.filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()) || todo.category.toLowerCase().includes(search.toLowerCase()) || todo.description.toLowerCase().includes(search.toLowerCase()))
-    //   : filteredTodos
+    return search.trim().length > 0
+      ? filteredTodos.filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()) || todo.category.toLowerCase().includes(search.toLowerCase()) || todo.description.toLowerCase().includes(search.toLowerCase()))
+      : filteredTodos
   }, [search])
 
   return (
     <>
       <div className="w-full font-inter min-h-screen h-full py-20 px-5 flex justify-center items-center">
-        <div className="w-3/4 bg-slate-300 rounded-lg shadow-lg border">
+        <div className="w-3/4 rounded-lg shadow-2xl border-b">
           <Header />
           <CreateTodo handleSubmit={handleSubmitCreate} />
 
-          <div className="flex items-center justify-between p-4 bg-gray-700 border-b border-solid border-gray-600 border">
-            <p className="text-gray-400 text-sm">
+          <div className="flex flex-col md:flex-row items-center text-lg justify-between mt-7 p-4 bg-gray-700/50 border-b rounded-lg mx-6">
+            <p className="text-gray-400">
               {filteredTodos.length} items left
             </p>
 
             <input
               value={search}
               type='text'
-              placeholder='Buscar ToDo...'
+              placeholder='Search a ToDo...'
               onChange={(e) => { setSearch(e.target.value) }}
+              className='h-10 rounded-md px-3 focus:outline-none bg-transparent focus:bg-sky-500 focus:w-80 focus:outline-teal-900 placeholder:text-white placeholder:text-center text-white transition duration-150 ease-out'
             />
 
             <div className="flex items-center space-x-2">
@@ -161,9 +159,9 @@ function App () {
             </div>
           </div>
 
-          <div className="p-3">
+          <div className="p-6">
             <ListTodos
-              todos={filteredTodos}
+              todos={search.trim().length ? searchTodo : filteredTodos}
               handleSetComplete={handleSetComplete}
               handleDelete={handleDelete}
               handleUpdate={openModal}
