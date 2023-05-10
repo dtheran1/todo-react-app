@@ -2,7 +2,7 @@
     TODO APP
 </h1>
 <h3 align="center"> 
-  🚧  Technical tes React.js Junior ...  🚧
+  🚧  Technical test React.js Junior ...  🚧
 </h3>
 
 <p align="center">
