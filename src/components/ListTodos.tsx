@@ -1,6 +1,8 @@
 import React from 'react'
 import { type Todo } from '../models/model'
-
+import checkIcon from '../assets/check-icon.svg'
+import deleteIcon from '../assets/delete-icon.svg'
+import editIcon from '../assets/edit-icon.svg'
 interface Props {
   todos: Todo[]
   handleSetComplete: (id: number) => void
@@ -17,7 +19,7 @@ export const ListTodos: React.FC<Props> = ({
   return (
     <div>
       <div className='relative overflow-x-auto'>
-        <table className='w-full text-lg text-left text-gray-900 rounded-md'>
+        <table className='w-full text-lg table-fixed text-left text-gray-900 '>
           <thead className='text-white uppercase bg-gradient-to-b from-gray-400 to-gray-800'>
             <tr>
               <th scope='col' className='px-6 py-3'>
@@ -29,7 +31,7 @@ export const ListTodos: React.FC<Props> = ({
               <th scope='col' className='px-6 py-3'>
                 Category
               </th>
-              <th scope='col' className='px-6 py-3'>
+              <th scope='col' className='px-6 py-3 w-1/4'>
                 Description
               </th>
               <th scope='col' className='px-6 py-3'>
@@ -39,9 +41,7 @@ export const ListTodos: React.FC<Props> = ({
           </thead>
           <tbody>
             {todos.map(todo => (
-              <tr
-                key={todo.id}
-                className='border-b text-white font-semibold'>
+              <tr key={todo.id} className='border-b text-white font-semibold'>
                 <th
                   scope='row'
                   className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap '>
@@ -55,7 +55,7 @@ export const ListTodos: React.FC<Props> = ({
                         className='bg-green-700  p-1 rounded-full cursor-pointer'>
                         <img
                           className='h-4 w-4 '
-                          src='/check-icon.svg'
+                          src={checkIcon}
                           alt='Check Icon'
                         />
                       </div>
@@ -66,22 +66,22 @@ export const ListTodos: React.FC<Props> = ({
                           handleSetComplete(todo.id)
                         }}
                         className={
-                          'border border-gray-500 border-solid p-3 rounded-full cursor-pointer'
+                          'border border-gray-800 border-solid p-3 rounded-full cursor-pointer'
                         }></span>
                         )}
                   </div>
                 </th>
-                <td className='px-6 py-4'>
+                <td className='px-6 py-4 truncate'>
                   <p className={todo.status ? 'line-through' : ''}>
                     {todo.title}
                   </p>
                 </td>
-                <td className='px-6 py-4'>
+                <td className='px-6 py-4 truncate'>
                   <p className={todo.status ? 'line-through' : ''}>
                     {todo.category}
                   </p>
                 </td>
-                <td className='px-6 py-4'>
+                <td className='px-6 py-4 w-20 truncate'>
                   <p className={todo.status ? 'line-through' : ''}>
                     {todo.description}
                   </p>
@@ -92,11 +92,7 @@ export const ListTodos: React.FC<Props> = ({
                       handleUpdate(todo)
                     }}
                     className='border rounded-md p-2 bg-yellow-200 hover:scale-110'>
-                    <img
-                      className='h-5 w-5'
-                      src='/edit-icon.svg'
-                      alt='Edit Icon'
-                    />
+                    <img className='h-5 w-5' src={editIcon} alt='Edit Icon' />
                   </button>
                   <button
                     onClick={() => {
@@ -105,7 +101,7 @@ export const ListTodos: React.FC<Props> = ({
                     className='border rounded-md p-2 bg-red-200 hover:scale-110'>
                     <img
                       className='h-5 w-5'
-                      src='/delete-icon.svg'
+                      src={deleteIcon}
                       alt='Delete Icon'
                     />
                   </button>
