@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-  background-image: url('./assets/back2.jpg');
+  background-image: url('./assets/back.jpg');
   background-size: cover;
 }
