@@ -18,7 +18,7 @@ ToDos App using ReactJS, Vite
  [Project deployed](https://todo-react-app-fvws.vercel.app/)
  
 <p align="center">
-  ![image](https://github.com/dtheran1/todo-react-app/assets/83596975/1a557820-3964-4163-9893-29bdca16e9bb)
+  ![image] <img src:"https://github.com/dtheran1/todo-react-app/assets/83596975/1a557820-3964-4163-9893-29bdca16e9bb" alt:'img-project' />
 </p>
 
 
