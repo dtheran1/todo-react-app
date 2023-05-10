@@ -112,13 +112,13 @@ function App () {
             todo.description.toLowerCase().includes(search.toLowerCase())
       )
       : todos
-  }, [search, todos, filter])
+  }, [search, todos])
 
-  const filteredT = useMemo(() => {
+  const filteredTodos = useMemo(() => {
     if (filter === 'all') return searchTodo
     if (filter === 'active') return searchTodo.filter(todo => !todo.status)
     if (filter === 'completed') return searchTodo.filter(todo => todo.status)
-  }, [filter, todos])
+  }, [searchTodo, filter])
 
   return (
     <>
@@ -128,7 +128,7 @@ function App () {
           <CreateTodo handleSubmit={handleSubmit} />
 
           <div className='flex flex-col md:flex-row items-center text-lg justify-between mt-7 p-4 bg-gray-700/50 border-b rounded-lg mx-6'>
-            <p className='text-gray-400'>{filteredT.length} items left</p>
+            <p className='text-gray-400'>{filteredTodos.length} items left</p>
 
             <input
               value={search}
@@ -167,7 +167,7 @@ function App () {
 
           <div className='p-2 md:p-6'>
             <ListTodos
-              todos={search.trim() ? searchTodo : filteredT}
+              todos={filteredTodos}
               handleSetComplete={handleSetComplete}
               handleDelete={handleDelete}
               handleUpdate={openModal}
