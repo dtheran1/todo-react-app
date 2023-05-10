@@ -16,11 +16,8 @@ ToDos App using ReactJS, Vite
   
  ### ✅ Demo
  [Project deployed](https://todo-react-app-fvws.vercel.app/)
- 
-<p align="center">
-    <img src:"https://github.com/dtheran1/todo-react-app/assets/83596975/1a557820-3964-4163-9893-29bdca16e9bb" alt:'img-project' />
-</p>
 
+![image](https://github.com/dtheran1/todo-react-app/assets/83596975/6e6a6dc7-d7cb-4ad5-a289-e056439dda06)
 
 ### ⚙ Pre-requisites
 
