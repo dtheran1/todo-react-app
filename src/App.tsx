@@ -17,7 +17,7 @@ function App () {
     description: ''
   })
   const [isUpdating, setIsUpdating] = useState(false)
-  const [todos, setTodos] = useState(mockTodos)
+  const [todos, setTodos] = useState<Todo[]>(mockTodos)
   const [filter, setFilter] = useState<'all' | 'completed' | 'active'>('all')
   const [search, setSearch] = useState('')
 
@@ -103,7 +103,7 @@ function App () {
     setFilter('active')
   }
 
-  const searchTodo = useMemo(() => {
+  const searchTodos = useMemo(() => {
     return typeof search === 'string' && search.length > 0
       ? todos.filter(
         todo =>
@@ -115,10 +115,10 @@ function App () {
   }, [search, todos])
 
   const filteredTodos = useMemo(() => {
-    if (filter === 'all') return searchTodo
-    if (filter === 'active') return searchTodo.filter(todo => !todo.status)
-    if (filter === 'completed') return searchTodo.filter(todo => todo.status)
-  }, [searchTodo, filter])
+    if (filter === 'all') return searchTodos
+    if (filter === 'active') return searchTodos.filter(todo => !todo.status)
+    if (filter === 'completed') return searchTodos.filter(todo => todo.status)
+  }, [searchTodos, filter])
 
   return (
     <>
