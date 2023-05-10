@@ -15,7 +15,7 @@ export const mockTodos = [
   },
   {
     id: 3,
-    title: 'Todo 3',
+    title: 'Homework',
     status: false,
     category: 'School',
     description: 'Do the chores 💪🏻'
