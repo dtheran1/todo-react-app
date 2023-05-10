@@ -19,7 +19,7 @@ export const ListTodos: React.FC<Props> = ({
   return (
     <div>
       <div className='relative'>
-        {!todos.length
+        {(todos.length === 0)
           ? (
           <h2 className='text-center text-4xl text-gray-700 font-semibold'>
             Great, you don't have toDo it!

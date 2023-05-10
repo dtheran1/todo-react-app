@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './App.css'
 import { CreateTodo } from './components/CreateTodo'
 import Header from './components/Header'
@@ -19,7 +19,6 @@ function App () {
   const [isUpdating, setIsUpdating] = useState(false)
   const [todos, setTodos] = useState(mockTodos)
   const [filter, setFilter] = useState<'all' | 'completed' | 'active'>('all')
-  const [filteredTodos, setFilteredTodos] = useState<Todo[]>(todos)
   const [search, setSearch] = useState('')
 
   const getTodos = () => {
@@ -104,26 +103,22 @@ function App () {
     setFilter('active')
   }
 
-  useEffect(() => {
-    if (filter === 'all') {
-      setFilteredTodos(todos)
-    } else if (filter === 'active') {
-      const activeTodos = todos.filter(todo => !todo.status)
-      setFilteredTodos(activeTodos)
-    } else if (filter === 'completed') {
-      const completedTodos = todos.filter(todo => todo.status)
-      setFilteredTodos(completedTodos)
-    }
-    if (search.trim().length > 0) {
-      const searchTodo = filteredTodos.filter(
+  const searchTodo = useMemo(() => {
+    return typeof search === 'string' && search.length > 0
+      ? todos.filter(
         todo =>
           todo.title.toLowerCase().includes(search.toLowerCase()) ||
-          todo.category.toLowerCase().includes(search.toLowerCase()) ||
-          todo.description.toLowerCase().includes(search.toLowerCase())
+            todo.category.toLowerCase().includes(search.toLowerCase()) ||
+            todo.description.toLowerCase().includes(search.toLowerCase())
       )
-      setFilteredTodos(searchTodo)
-    }
-  }, [search, filter, todos])
+      : todos
+  }, [search, todos, filter])
+
+  const filteredT = useMemo(() => {
+    if (filter === 'all') return searchTodo
+    if (filter === 'active') return searchTodo.filter(todo => !todo.status)
+    if (filter === 'completed') return searchTodo.filter(todo => todo.status)
+  }, [filter, todos])
 
   return (
     <>
@@ -133,7 +128,7 @@ function App () {
           <CreateTodo handleSubmit={handleSubmit} />
 
           <div className='flex flex-col md:flex-row items-center text-lg justify-between mt-7 p-4 bg-gray-700/50 border-b rounded-lg mx-6'>
-            <p className='text-gray-400'>{filteredTodos.length} items left</p>
+            <p className='text-gray-400'>{filteredT.length} items left</p>
 
             <input
               value={search}
@@ -172,7 +167,7 @@ function App () {
 
           <div className='p-2 md:p-6'>
             <ListTodos
-              todos={filteredTodos}
+              todos={search.trim() ? searchTodo : filteredT}
               handleSetComplete={handleSetComplete}
               handleDelete={handleDelete}
               handleUpdate={openModal}
