@@ -52,9 +52,9 @@ export const ListTodos: React.FC<Props> = ({
                         onClick={() => {
                           handleSetComplete(todo.id)
                         }}
-                        className='bg-green-700  p-1 rounded-full cursor-pointer'>
+                        className='bg-green-700 p-1 w-7 h-7 rounded-full cursor-pointer'>
                         <img
-                          className='h-4 w-4 '
+                          className='h-5 w-5'
                           src={checkIcon}
                           alt='Check Icon'
                         />
@@ -86,19 +86,19 @@ export const ListTodos: React.FC<Props> = ({
                     {todo.description}
                   </p>
                 </td>
-                <td className='px-6 py-4 flex gap-3'>
+                <td className='px-3 md:px-6 py-2 md:py-4 flex flex-col md:flex-row gap-2'>
                   <button
                     onClick={() => {
                       handleUpdate(todo)
                     }}
-                    className='border rounded-md p-2 bg-yellow-200 hover:scale-110'>
+                    className='border rounded-md w-10 p-2 bg-yellow-200 hover:scale-110'>
                     <img className='h-5 w-5' src={editIcon} alt='Edit Icon' />
                   </button>
                   <button
                     onClick={() => {
                       handleDelete(todo.id)
                     }}
-                    className='border rounded-md p-2 bg-red-200 hover:scale-110'>
+                    className='border rounded-md w-10 p-2 bg-red-200 hover:scale-110'>
                     <img
                       className='h-5 w-5'
                       src={deleteIcon}

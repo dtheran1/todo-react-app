@@ -127,7 +127,7 @@ function App () {
 
   return (
     <>
-      <div className='w-full font-inter min-h-screen h-full py-20 px-5 flex justify-center items-center'>
+      <div className='w-full font-inter min-h-screen h-full py-20 px-1 md:px-5 flex justify-center items-center'>
         <div className='w-full md:w-3/4 rounded-lg shadow-2xl border-b bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg'>
           <Header />
           <CreateTodo handleSubmit={handleSubmit} />
@@ -142,7 +142,7 @@ function App () {
               onChange={e => {
                 setSearch(e.target.value)
               }}
-              className='h-10 rounded-md px-3 focus:outline-none bg-transparent focus:bg-gray-500 focus:w-80 focus:outline-teal-900 placeholder:text-white placeholder:text-center text-white transition duration-150 ease-out'
+              className='h-10 rounded-full px-3 focus:outline-none bg-transparent focus:bg-gray-500 focus:w-80 focus:outline-teal-900 placeholder:text-white placeholder:text-center text-white transition duration-150 ease-out'
             />
 
             <div className='flex items-center space-x-2'>
@@ -170,7 +170,7 @@ function App () {
             </div>
           </div>
 
-          <div className='p-6'>
+          <div className='p-2 md:p-6'>
             <ListTodos
               todos={filteredTodos}
               handleSetComplete={handleSetComplete}
