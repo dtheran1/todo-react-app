@@ -28,13 +28,13 @@ export const ListTodos: React.FC<Props> = ({
               <th scope='col' className='px-6 py-3'>
                 Title
               </th>
-              <th scope='col' className='px-6 py-3'>
+              <th scope='col' className='px-6 py-3 truncate'>
                 Category
               </th>
-              <th scope='col' className='px-6 py-3 w-1/4'>
+              <th scope='col' className='px-6 py-3 truncate'>
                 Description
               </th>
-              <th scope='col' className='px-6 py-3'>
+              <th scope='col' className='px-6 py-3 truncate'>
                 Actions
               </th>
             </tr>
@@ -72,17 +72,17 @@ export const ListTodos: React.FC<Props> = ({
                   </div>
                 </th>
                 <td className='px-6 py-4 truncate'>
-                  <p className={todo.status ? 'line-through' : ''}>
+                  <p className={todo.status ? 'line-through text-green-600' : ''}>
                     {todo.title}
                   </p>
                 </td>
                 <td className='px-6 py-4 truncate'>
-                  <p className={todo.status ? 'line-through' : ''}>
+                  <p className={todo.status ? 'line-through text-green-600' : ''}>
                     {todo.category}
                   </p>
                 </td>
                 <td className='px-6 py-4 w-20 truncate'>
-                  <p className={todo.status ? 'line-through' : ''}>
+                  <p className={todo.status ? 'line-through text-green-600' : ''}>
                     {todo.description}
                   </p>
                 </td>

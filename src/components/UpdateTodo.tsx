@@ -5,13 +5,9 @@ import closeIcon from '../assets/close-icon.svg'
 interface Props {
   closeModal: () => void
   todo: Todo
-  updateTodo: (event: React.FormEvent<HTMLFormElement>) => void
+  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void
 }
-export const UpdateTodo: React.FC<Props> = ({
-  closeModal,
-  todo,
-  updateTodo
-}) => {
+export const UpdateTodo: React.FC<Props> = ({ closeModal, todo, handleSubmit }) => {
   const [title, setTitle] = useState(todo.title)
   const [category, setCategory] = useState(todo.category)
   const [description, setDescription] = useState(todo.description)
@@ -31,16 +27,16 @@ export const UpdateTodo: React.FC<Props> = ({
             <div className='relative p-6 flex-auto '>
               <form
                 className='flex flex-col gap-y-3 w-full'
-                onSubmit={updateTodo}>
+                onSubmit={handleSubmit}>
                 <div className='flex justify-center w-full gap-x-5'>
                   <div className='flex w-1/4 pt-2 items-end gap-y-9 flex-col'>
-                    <div className=''>
+                    <div>
                       <span className='font-bold'>Title:</span>
                     </div>
-                    <div className=''>
+                    <div>
                       <span className='font-bold'>Category:</span>
                     </div>
-                    <div className=''>
+                    <div>
                       <span className='font-bold'>Description:</span>
                     </div>
                   </div>

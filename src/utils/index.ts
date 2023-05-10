@@ -1,24 +1,23 @@
-
 export const mockTodos = [
   {
     id: 1,
-    title: 'Todo 1',
+    title: 'Ciomprix',
     status: true,
     category: 'Work',
-    description: 'Lorem'
+    description: 'Submit your React test 💙'
   },
   {
     id: 2,
-    title: 'Todo 2',
+    title: 'Clean',
     status: false,
     category: 'Home',
-    description: 'Lorem'
+    description: 'Washing the car 💦'
   },
   {
     id: 3,
     title: 'Todo 3',
     status: false,
     category: 'School',
-    description: 'Lorem'
+    description: 'Do the chores 💪🏻'
   }
 ]

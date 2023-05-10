@@ -35,8 +35,9 @@ function App () {
     getTodos()
   }, [])
 
-  const handleSubmitCreate = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    const todosList = [...todos]
     const form = event.target as HTMLFormElement
     const formData = new FormData(form)
     const title = formData.get('title') as string
@@ -45,16 +46,26 @@ function App () {
 
     if (!title.trim() || !category.trim() || !description.trim()) return
 
-    const newTodo = {
-      id: todos.length + 1,
-      title,
-      status: false,
-      category,
-      description
+    if (!isUpdating) {
+      const newTodo = {
+        id: todos.length + 1,
+        title,
+        status: false,
+        category,
+        description
+      }
+      todosList.push(newTodo)
+    } else {
+      const todoFiltered = todos.findIndex(todo => todo.id === auxTodo.id)
+      const updatedTodo = {
+        ...auxTodo,
+        title,
+        category,
+        description
+      }
+      todosList[todoFiltered] = updatedTodo
+      setIsUpdating(false)
     }
-    const todosList = [...todos]
-    todosList.push(newTodo)
-
     setTodos(todosList)
     localStorage.setItem('todos', JSON.stringify(todosList))
     form.reset()
@@ -69,28 +80,6 @@ function App () {
 
     setTodos(updatedList)
     localStorage.setItem('todos', JSON.stringify(updatedList))
-  }
-  const updateTodo = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.target as HTMLFormElement
-    const formData = new FormData(form)
-    const title = formData.get('title') as string
-    const category = formData.get('category') as string
-    const description = formData.get('description') as string
-    if (!title.trim() || !category.trim() || !description.trim()) return
-    const todoFiltered = todos.findIndex(todo => todo.id === auxTodo.id)
-    const updatedTodo = {
-      ...auxTodo,
-      title,
-      category,
-      description
-    }
-    const updatedList = [...todos]
-    updatedList[todoFiltered] = updatedTodo
-    setTodos(updatedList)
-    localStorage.setItem('todos', JSON.stringify(updatedList))
-    form.reset()
-    setIsUpdating(false)
   }
   const handleDelete = (id: number) => {
     const updatedList = todos.filter(todo => todo.id !== id)
@@ -140,7 +129,7 @@ function App () {
       <div className='w-full font-inter min-h-screen h-full py-20 px-5 flex justify-center items-center'>
         <div className='w-3/4 rounded-lg shadow-2xl border-b bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg'>
           <Header />
-          <CreateTodo handleSubmit={handleSubmitCreate} />
+          <CreateTodo handleSubmit={handleSubmit} />
 
           <div className='flex flex-col md:flex-row items-center text-lg justify-between mt-7 p-4 bg-gray-700/50 border-b rounded-lg mx-6'>
             <p className='text-gray-400'>{filteredTodos.length} items left</p>
@@ -194,7 +183,7 @@ function App () {
         <UpdateTodo
           todo={auxTodo}
           closeModal={closeModal}
-          updateTodo={updateTodo}
+          handleSubmit={handleSubmit}
         />
       )}
     </>
