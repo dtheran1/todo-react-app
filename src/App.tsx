@@ -128,7 +128,7 @@ function App () {
   return (
     <>
       <div className='w-full font-inter min-h-screen h-full py-20 px-5 flex justify-center items-center'>
-        <div className='w-3/4 rounded-lg shadow-2xl border-b bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg'>
+        <div className='w-full md:w-3/4 rounded-lg shadow-2xl border-b bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg'>
           <Header />
           <CreateTodo handleSubmit={handleSubmit} />
 
