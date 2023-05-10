@@ -24,6 +24,7 @@ function App () {
 
   const getTodos = () => {
     const getStoreTodos = JSON.parse(localStorage.getItem('todos'))
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (getStoreTodos ?? false) {
       setTodos(getStoreTodos)
     } else {
@@ -43,7 +44,7 @@ function App () {
     const title = formData.get('title') as string
     const category = formData.get('category') as string
     const description = formData.get('description') as string
-
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!title.trim() || !category.trim() || !description.trim()) return
 
     if (!isUpdating) {
